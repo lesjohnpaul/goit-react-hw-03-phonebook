@@ -15,14 +15,18 @@ export class App extends Component {
   };
 
   componentDidMount() {
+    // Check if contacts are saved in localStorage
     const savedContacts = localStorage.getItem('contacts');
     if (savedContacts) {
+      // If yes, update the state with these contacts
       this.setState({ contacts: JSON.parse(savedContacts) });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // Check if current contacts are different from the previous state
     if (prevState.contacts !== this.state.contacts) {
+      // If they are different, save the current contacts to localStorage
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
